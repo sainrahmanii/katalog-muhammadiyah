@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('sellers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('password');
-            $table->string('no_whatsapp');
+            $table->string('no_whatsapp')->unique();
             $table->timestamps();
         });
     }

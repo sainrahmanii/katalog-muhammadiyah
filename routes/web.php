@@ -27,20 +27,22 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
-Route::prefix('admin/katalog-muhammadiyah')->name('katalog.')->group(function(){
-    Route::controller(Supervisor::class)->group(function(){
-        Route::get('/', 'index')->name('index');
-        Route::get('/all', 'all')->name('all');
-        Route::get('/create-shop', 'create')->name('create');
-        Route::post('/store-shop', 'store')->name('store');
-        Route::get('/edit-allshop', 'editAll')->name('edit');
-        Route::get('/edit-shop/{id}', 'edit')->name('edit.shop');
-        Route::put('/update-shop/{id}', 'update')->name('update.shop');
-        Route::get('/delete-all-shop', 'deleteAll')->name('delete');
-        Route::delete('/delete-all-shop/{id}', 'destroy')->name('destroy');
+    Route::prefix('admin/katalog-muhammadiyah')->middleware('supervisor')->name('katalog.')->group(function(){
+        Route::controller(Supervisor::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::get('/all', 'all')->name('all');
+            Route::get('/create-shop', 'create')->name('create');
+            Route::post('/store-shop', 'store')->name('store');
+            Route::get('/edit-all-shop', 'editAll')->name('edit');
+            Route::get('/edit-shop/{id}', 'edit')->name('edit.shop');
+            Route::put('/update-shop/{id}', 'update')->name('update.shop');
+            Route::get('/delete-all-shop', 'deleteAll')->name('delete');
+            Route::delete('/delete-all-shop/{id}', 'destroy')->name('destroy');
+        });
     });
 });
+
+
 
 require __DIR__.'/auth.php';

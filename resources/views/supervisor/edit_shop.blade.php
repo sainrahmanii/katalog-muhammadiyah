@@ -7,9 +7,9 @@
     <div class="grid lg:grid-cols-2 gap-5 grid-cols-1">
         @forelse ($edit as $edit)
             <a href="{{ route('katalog.edit.shop', $edit->id) }}">
-                <div class="px-8 py-2 flex items-center justify-between border rounded-lg shadow-lg">
+                <div class="lg:px-8 px-2 py-2 flex items-center justify-between border rounded-lg shadow-lg">
                     <img src="https://img.icons8.com/3d-fluency/70/null/shop.png" class="mr-5" />
-                    <h1 class="text-xl font-semibold">{{ $edit->name }}</h1>
+                    <h1 class="text-xl font-semibold">{{ $edit->nama_toko }}</h1>
                     <h1 class="font-semibold text-md">{{ $edit->no_whatsapp }}</h1>
                 </div>
             </a>

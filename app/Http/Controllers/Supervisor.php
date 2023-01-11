@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Seller;
+use App\Models\Shop;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -25,7 +26,8 @@ class Supervisor extends Controller
      */
     public function create()
     {
-        return view('supervisor.create');
+        $users = User::get();
+        return view('supervisor.create', compact('users'));
     }
 
     /**
@@ -37,16 +39,18 @@ class Supervisor extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name'        => 'required|unique:sellers,name,except,id|max:255',
-            'password'    => 'required',
-            'no_whatsapp' => 'required|unique:sellers,no_whatsapp,except,id',
+            'nama_toko'        => 'required|unique:shops,nama_toko,except,id|max:255',
         ]);
 
-        Seller::create([
-            'name'          => $request->name,
-            'password'      => Hash::make($request->password),
-            'no_whatsapp'   => $request->no_whatsapp
+        Shop::create([
+            'nama_toko'     => $request->nama_toko,
+            'user_id'       => $request->user_id
         ]);
+
+        $user_id = $request->user_id;
+        $role = $request->role;
+        $role = User::where($user_id, 'role');
+        $role->save();
 
         return redirect()->route('katalog.index');
     }
@@ -70,7 +74,7 @@ class Supervisor extends Controller
      */
     public function edit($id)
     {
-        $seller = Seller::find($id);
+        $seller = Shop::find($id);
         return view('supervisor.edit', compact('seller'));
     }
 
@@ -83,18 +87,14 @@ class Supervisor extends Controller
      */
     public function update(Request $request, $id)
     {
-        $seller = Seller::find($id);
+        $seller = Shop::find($id);
 
         $validated = $request->validate([
-            'name'        => 'required|unique:sellers,name,except,id|max:255',
-            'password'    => 'required',
-            'no_whatsapp' => 'required|unique:sellers,no_whatsapp,except,id',
+            'nama_toko'        => 'required|unique:shops,nama_toko,except,id|max:255',
         ]);
 
         $seller->update([
-            'name'          => $request->name,
-            'password'      => Hash::make($request->password),
-            'no_whatsapp'   => $request->no_whatsapp
+            'nama_toko'          => $request->nama_toko
         ]);
 
         return redirect()->route('katalog.index');
@@ -108,7 +108,7 @@ class Supervisor extends Controller
      */
     public function destroy($id)
     {
-        $seller = Seller::find($id);
+        $seller = Shop::find($id);
         $seller->delete();
 
         return redirect()->route('katalog.index');
@@ -116,19 +116,19 @@ class Supervisor extends Controller
 
     public function all()
     {
-        $sellers = Seller::latest()->paginate(5);
+        $sellers = Shop::all();
         return view('supervisor.shop', compact('sellers'));
     }
 
     public function editAll()
     {
-        $edit = Seller::latest()->paginate(5);
+        $edit = Shop::latest()->paginate(5);
         return view('supervisor.edit_shop', compact('edit'));
     }
 
     public function deleteAll()
     {
-        $delete = Seller::latest()->paginate(5);
+        $delete = Shop::latest()->paginate(5);
         return view('supervisor.delete_shop', compact('delete'));
     }
 }

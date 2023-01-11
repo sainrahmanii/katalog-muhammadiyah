@@ -29,7 +29,15 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        if (Auth::user()->role == 'SUPERVISOR') {
+            return redirect()->route('katalog.index');
+        }elseif (Auth::user()->role == 'SELLER') {
+            return redirect('/profile');
+        }else {
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }
+
+
     }
 
     /**

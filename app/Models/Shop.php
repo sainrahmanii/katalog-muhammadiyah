@@ -2,19 +2,20 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\Product;
 use App\Models\Checkout;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Seller extends Model
+class Shop extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'password',
-        'no_whatsapp'
+        'user_id',
+        'nama_toko'
     ];
 
     /**
@@ -25,6 +26,11 @@ class Seller extends Model
     public function product()
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     /**

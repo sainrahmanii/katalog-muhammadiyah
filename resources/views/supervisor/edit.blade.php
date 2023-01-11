@@ -11,21 +11,8 @@
             <div class="lg:px-16 px-5 rounded-lg shadow-lg pb-7">
                 <label class="block my-4">
                     <span class="block text-sm font-medium text-slate-700">Nama Toko</span>
-                    <input type="text" class="rounded-full outline-slate-200 px-5 w-full" required name="name" value="{{ old('name', $seller->name) }}"/>
+                    <input type="text" class="rounded-full outline-slate-200 px-5 w-full" required name="nama_toko" value="{{ old('nama_toko', $seller->nama_toko) }}"/>
                     @error('name')
-                        <div class="text-red-500 mt-2">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </label>
-                <label class="block my-4">
-                    <span class="block text-sm font-medium text-slate-700">Password</span>
-                    <input type="password" class="rounded-full outline-slate-200 px-5 w-full" required name="password" />
-                </label>
-                <label class="block my-4">
-                    <span class="block text-sm font-medium text-slate-700">No.Whatsapp</span>
-                    <input type="number" class="rounded-full outline-slate-200 px-5 w-full" required name="no_whatsapp" value="{{ old('no_whatsapp', $seller->no_whatsapp) }}"/>
-                    @error('no_whatsapp')
                         <div class="text-red-500 mt-2">
                             {{ $message }}
                         </div>

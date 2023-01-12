@@ -34,7 +34,7 @@ class AuthenticatedSessionController extends Controller
         }elseif (Auth::user()->role == 'SELLER') {
             return redirect('/profile');
         }else {
-            return redirect()->intended(RouteServiceProvider::HOME);
+            return redirect('/');
         }
 
 

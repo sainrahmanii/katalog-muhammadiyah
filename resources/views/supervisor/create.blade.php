@@ -30,6 +30,16 @@
                         </div>
                     @enderror
                 </label>
+                <label class="block my-4">
+                    <span class="block text-sm font-medium text-slate-700">Nomor Whatsapp</span>
+                    <input type="number" class="rounded-full outline-slate-200 px-5 w-full" required name="no_whatsapp"
+                        value="{{ old('no_whatsapp') }}" />
+                    @error('no_whatsapp')
+                        <div class="text-red-500 mt-2">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </label>
                 <label class="hidden">
                     <input type="text" class="rounded-full outline-slate-200 px-5 w-full" required name="role" value="SELLER" />
                 </label>

@@ -12,8 +12,8 @@
                 @method('DELETE')
                 <div class="lg:px-8 px-2 py-2 flex items-center justify-between border rounded-lg shadow-lg">
                     <img src="https://img.icons8.com/3d-fluency/70/null/shop.png" class="mr-5" />
-                    <h1 class="text-xl font-semibold">{{ $delete->name }}</h1>
-                    <h1 class="font-semibold text-md">{{ $delete->no_whatsapp }}</h1>
+                    <h1 class="text-xl font-semibold">{{ $delete->nama_toko }}</h1>
+                    <h1 class="font-semibold text-md">{{ $delete->user->no_whatsapp }}</h1>
                     <button type="submit" class="bg-red-600 px-3 py-2 font-semibold text-white rounded-md">HAPUS</button>
                 </div>
             </form>

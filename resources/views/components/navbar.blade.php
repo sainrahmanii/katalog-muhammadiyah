@@ -2,7 +2,9 @@
     <div class="container">
         <div class="relative flex items-center justify-between py-3">
             <div class="font-semibold lg:text-xl text-md hidden lg:contents">
-                <h1>Muhammadiyah</h1>
+                <a href="{{ route('index') }}">
+                    <h1>Muhammadiyah</h1>
+                </a>
             </div>
             <div class="md:flex">
                 <label class="relative block">
@@ -19,10 +21,27 @@
                         placeholder="Search for anything..." type="text" name="search" />
                 </label>
             </div>
-            <div class="font-semibold text-sm lg:text-md">
+            @auth
                 {{-- nama user --}}
-                <h2>Husain Rahmani</h2>
-            </div>
+                {{-- <form action="{{ route('logout') }}" method="post"
+                    :href="route('logout')"
+                    onclick="event.preventDefault();
+                    this.closest('form').submit();">
+                    @csrf
+                    <div class="font-semibold text-sm lg:text-md cursor-pointer">
+                        {{ Auth::user()->name }}
+                    </div>
+                </form> --}}
+                <div class="font-semibold text-sm lg:text-md">
+                    {{ Auth::user()->name }}
+                </div>
+            @else
+                <div class="flex">
+                    <button class="px-5 py-2 rounded-full font-medium text-white bg-blue-400 hover:bg-blue-600">SIGN
+                        IN</button>
+                    <button class="px-5 rounded-full border border-blue-400 ml-3 ring-1">SIGN UP</button>
+                </div>
+            @endauth
         </div>
     </div>
 </nav>

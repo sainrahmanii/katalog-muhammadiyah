@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Checkout;
 use App\Models\Shop;
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class Supervisor extends Controller
@@ -36,21 +40,24 @@ class Supervisor extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, User $user)
     {
         $validated = $request->validate([
             'nama_toko'        => 'required|unique:shops,nama_toko,except,id|max:255',
+            'user_id'          => 'required|unique:shops,user_id,except,id|max:255'
         ]);
 
-        Shop::create([
-            'nama_toko'     => $request->nama_toko,
-            'user_id'       => $request->user_id
-        ]);
-
+        $shop = $request->all();
+        $data = $request->role;
+        $no_whatsapp = $request->no_whatsapp;
         $user_id = $request->user_id;
-        $role = $request->role;
-        $role = User::where($user_id, 'role');
-        $role->save();
+
+        $user = User::find($user_id);
+        $user->role = $data;
+        $user->no_whatsapp = $no_whatsapp;
+        $user->save();
+
+        $shoop = Shop::create($shop);
 
         return redirect()->route('katalog.index');
     }
@@ -122,13 +129,24 @@ class Supervisor extends Controller
 
     public function editAll()
     {
-        $edit = Shop::latest()->paginate(5);
+        $edit = Shop::all();
         return view('supervisor.edit_shop', compact('edit'));
     }
 
     public function deleteAll()
     {
-        $delete = Shop::latest()->paginate(5);
+        $delete = Shop::all();
         return view('supervisor.delete_shop', compact('delete'));
+    }
+
+    public function homepage()
+    {
+        if (Auth::user()->role == 'SUPERVISOR') {
+            return redirect()->route('katalog.index');
+        }elseif (Auth::user()->role == 'SELLER') {
+            return redirect('/profile');
+        }else{
+            return redirect('/');
+        }
     }
 }

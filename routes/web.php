@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SellerController;
 use App\Http\Controllers\Supervisor;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +42,13 @@ Route::middleware('auth')->group(function () {
             Route::put('/update-shop/{id}', 'update')->name('update.shop');
             Route::get('/delete-all-shop', 'deleteAll')->name('delete');
             Route::delete('/delete-all-shop/{id}', 'destroy')->name('destroy');
+        });
+    });
+
+    Route::prefix('seller/katalog-muammadiyah')->name('seller.')->group(function(){
+        Route::controller(SellerController::class)->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::get('/create-produk', 'create')->name('create');
         });
     });
 });

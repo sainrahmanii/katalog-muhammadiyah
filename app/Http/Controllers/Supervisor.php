@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Checkout;
 use App\Models\Shop;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
 class Supervisor extends Controller
 {
@@ -141,9 +137,9 @@ class Supervisor extends Controller
 
     public function homepage()
     {
-        if (Auth::user()->role == 'SUPERVISOR') {
+        if (Auth::user()->role === 'SUPERVISOR') {
             return redirect()->route('katalog.index');
-        }elseif (Auth::user()->role == 'SELLER') {
+        }elseif (Auth::user()->role === 'SELLER') {
             return redirect('/profile');
         }else{
             return redirect('/');

@@ -9,7 +9,7 @@
             @csrf
             <div class="lg:px-16 px-5 rounded-lg shadow-lg pb-7">
                 <div class="block my-4">
-                    <label for="" class="text-grey">Pilih User</label>
+                    <span class="block text-sm font-medium text-slate-700">Pilih User</span>
                     <select name="user_id"
                         class="appearance-none input-field rounded-full outline-slate-200 px-5 w-full">
                         <option value="" selected>Pilih User</option>

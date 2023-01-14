@@ -15,7 +15,8 @@ class Product extends Model
         'name',
         'detail',
         'image',
-        'seller_id',
+        'shop_id',
+        'harga',
         'available'
     ];
 

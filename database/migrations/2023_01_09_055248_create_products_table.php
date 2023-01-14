@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('detail');
             $table->string('image');
+            $table->integer('harga');
             $table->bigInteger('shop_id')->unsigned();
             $table->boolean('available');
             $table->timestamps();

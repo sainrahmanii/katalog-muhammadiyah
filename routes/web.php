@@ -45,10 +45,14 @@ Route::middleware('auth')->group(function () {
         });
     });
 
-    Route::prefix('seller/katalog-muammadiyah')->name('seller.')->group(function(){
+    Route::prefix('seller/katalog-muammadiyah')->middleware('seller')->name('seller.')->group(function(){
         Route::controller(SellerController::class)->group(function(){
             Route::get('/', 'index')->name('index');
-            Route::get('/create-produk', 'create')->name('create');
+            Route::get('/tambah-produk', 'create')->name('create');
+            Route::post('/create-produk', 'post')->name('post');
+            Route::get('/edit-produk/{id}', 'edit')->name('edit');
+            Route::put('/update-produk/{id}', 'update')->name('update');
+            Route::delete('/update-produk/{id}', 'destroy')->name('destroy');
         });
     });
 });

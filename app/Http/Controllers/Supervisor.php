@@ -140,7 +140,7 @@ class Supervisor extends Controller
         if (Auth::user()->role === 'SUPERVISOR') {
             return redirect()->route('katalog.index');
         }elseif (Auth::user()->role === 'SELLER') {
-            return redirect('/profile');
+            return redirect(route('seller.index'));
         }else{
             return redirect('/');
         }

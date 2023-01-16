@@ -22,18 +22,19 @@
                 </label>
             </div>
             @auth
-                {{-- nama user --}}
-                {{-- <form action="{{ route('logout') }}" method="post"
-                    :href="route('logout')"
-                    onclick="event.preventDefault();
-                    this.closest('form').submit();">
-                    @csrf
-                    <div class="font-semibold text-sm lg:text-md cursor-pointer">
-                        {{ Auth::user()->name }}
-                    </div>
-                </form> --}}
-                <div class="font-semibold text-sm lg:text-md">
+                <div class="font-semibold text-sm lg:text-md dropdown cursor-pointer">
                     {{ Auth::user()->name }}
+                    <div class="dropdown-content">
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <x-dropdown-link :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('Log Out') }}
+                            </x-dropdown-link>
+                        </form>
+                    </div>
                 </div>
             @else
                 <div class="flex">

@@ -12,8 +12,10 @@ class SellerController extends Controller
 {
     public function index()
     {
-        $products = Product::latest()->paginate(10);
-        return view('seller.index', compact('products'));
+        $products = Product::latest()->whereShopId(Auth::id())->paginate(10);
+        return view('seller.index', [
+            'products' => $products
+        ]);
     }
 
     public function create()

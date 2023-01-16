@@ -1,5 +1,5 @@
 @extends('master')
-@section('title', 'EDIT PRODUCT')
+@section('title', 'Edit Product')
 
 @section('content')
 

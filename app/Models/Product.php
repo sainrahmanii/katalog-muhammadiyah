@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use App\Models\Seller;
+use App\Models\Shop;
 use App\Models\Checkout;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Product extends Model
 {
@@ -25,9 +26,9 @@ class Product extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function seller()
+    public function shop()
     {
-        return $this->belongsTo(Seller::class);
+        return $this->belongsTo(Shop::class);
     }
 
     /**

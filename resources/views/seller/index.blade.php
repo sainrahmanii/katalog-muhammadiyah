@@ -26,10 +26,10 @@
                         @endif
                         <td>Rp {{ number_format((int) $product->harga) }}</td>
                         <td><img src="{{ Storage::url('public/image-products/') . $product->image }}"
-                                class="w-24 max-w-32 mx-auto rounded-2xl" alt=""></td>
+                                class="w-24 h-16 border object-cover max-w-32 mx-auto rounded-2xl" alt=""></td>
                         <td class="flex gap-1 justify-center items-center">
                             <a href="{{ route('seller.edit', $product->id) }}">
-                                <button class="bg-cyan-400 px-2 py-2 rounded-lg">
+                                <button class="bg-violet-500 px-2 py-2 rounded-lg">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="2" stroke="currentColor" class="w-5 h-5 stroke-white">
                                         <path stroke-linecap="round" stroke-linejoin="round"

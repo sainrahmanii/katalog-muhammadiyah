@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\Supervisor;
@@ -16,8 +17,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::controller(CustomerController::class)->group(function(){
+    Route::get('/katalog', 'index')->name('landing');
+    Route::get('/product/{id}', 'show')->name('show');
 });
 
 Route::get('/dashboard', function () {

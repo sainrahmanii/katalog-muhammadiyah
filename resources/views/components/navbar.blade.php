@@ -38,9 +38,11 @@
                 </div>
             @else
                 <div class="flex">
-                    <button class="px-5 py-2 rounded-full font-medium text-white bg-blue-400 hover:bg-blue-600">SIGN
-                        IN</button>
-                    <button class="px-5 rounded-full border border-blue-400 ml-3 ring-1">SIGN UP</button>
+                    <a href ="{{ route('login') }}"><button class="px-5 py-2 ring-emerald-400 rounded-full font-semibold text-white bg-emerald-400 hover:bg-emerald-600">SIGN
+                        IN</button> </a>
+                    <a href="{{ route('register') }}">
+                        <button class="font-semibold px-5 py-2 rounded-full ring-emerald-400 text-emerald-400 ml-3 ring-1">SIGN UP</button>
+                    </a>
                 </div>
             @endauth
         </div>

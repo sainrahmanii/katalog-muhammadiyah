@@ -13,12 +13,20 @@
 
     <title>@yield('title')</title>
 </head>
-<body>
+<body class="scrollbar scrollbar-w-2 scrollbar-h-0.5 scrollbar-thumb-emerald-500 scrollbar-thumb-rounded-lg scrollbar-track-rounded-lg scrollbar-track-emerald-200">
     @include('components.navbar')
     <div class="lg:mx-32 mx-5 py-20">
         @yield('content')
     </div>
     @include('components.footer')
 
+    <script>
+        $jumlah = 1;
+        $(document).ready(function(){
+            $("decrement").click(function(){
+                $jumlah++;
+            });
+        });
+    </script>
 </body>
 </html>

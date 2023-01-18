@@ -137,12 +137,16 @@ class Supervisor extends Controller
 
     public function homepage()
     {
-        if (Auth::user()->role === 'SUPERVISOR') {
-            return redirect()->route('katalog.index');
-        }elseif (Auth::user()->role === 'SELLER') {
-            return redirect(route('seller.index'));
-        }else{
-            return redirect('/');
+        if (Auth::check()) {
+            if (Auth::user()->role === 'SUPERVISOR') {
+                return redirect()->route('katalog.index');
+            }elseif (Auth::user()->role === 'SELLER') {
+                return redirect(route('seller.index'));
+            }elseif(Auth::user()->role === 'USER'){
+                return redirect('/katalog');
+            }
+        }else {
+            return redirect('/katalog');
         }
     }
 }

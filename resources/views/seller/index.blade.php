@@ -57,6 +57,7 @@
                 <a href="{{ route('seller.create') }}"><button
                         class="bg-emerald-400 px-7 py-2 rounded-full text-white font-semibold">CREATE</button></a>
             </div>
+            {{ $products->links() }}
         </div>
     </div>
 

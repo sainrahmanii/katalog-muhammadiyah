@@ -19,7 +19,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(CustomerController::class)->group(function(){
     Route::get('/katalog', 'index')->name('landing');
-    Route::get('/product/{id}', 'show')->name('show');
+    Route::get('/katalog/{slug}', 'show')->name('show');
+    Route::get('/katalog', 'search')->name('search');
 });
 
 Route::get('/dashboard', function () {

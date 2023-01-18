@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('detail');
+            $table->string('slug');
             $table->string('image');
             $table->integer('harga');
             $table->bigInteger('shop_id')->unsigned();

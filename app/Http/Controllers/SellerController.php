@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Illuminate\Support\Str;
 use App\Models\User;
 use App\Models\Shop;
 use Illuminate\Http\Request;
@@ -45,6 +46,7 @@ class SellerController extends Controller
             'detail'    => $request->detail,
             'available' => $request->available,
             'shop_id'   => $shop_id,
+            'slug'      => Str::slug($request->get('name')),
             'harga'     => $request->harga,
             'image'     => $image->hashName()
         ]);

@@ -4,7 +4,7 @@
             <div class="relative flex items-center justify-between py-3">
                 <div class="font-semibold lg:text-xl text-md hidden lg:contents">
                     <a href="{{ route('index') }}">
-                        <h1>Muhammadiyah</h1>
+                        <h1>KatalogMu</h1>
                     </a>
                 </div>
                 <div class="md:flex">

@@ -22,7 +22,7 @@ class CustomerController extends Controller
 
     public function index()
     {
-        $products = Product::with('shop')->get();
+        $products = Product::latest()->get();
         return view('customer.index', ['products' => $products]);
     }
 

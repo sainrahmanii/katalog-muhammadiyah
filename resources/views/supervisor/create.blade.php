@@ -44,7 +44,7 @@
                     <input type="text" class="rounded-full outline-slate-200 px-5 w-full" required name="role" value="SELLER" />
                 </label>
                 <div class="flex justify-end">
-                    <button type="submit" class="px-12 py-3 bg-blue-500 rounded-full text-white font-semibold">
+                    <button type="submit" class="px-12 py-3 bg-emerald-500 hover:bg-emerald-400 rounded-full text-white font-semibold">
                         Submit
                     </button>
                 </div>

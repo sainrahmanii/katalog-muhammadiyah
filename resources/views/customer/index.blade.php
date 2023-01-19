@@ -7,7 +7,7 @@
         @forelse ($products as $product)
             <div class="border rounded-xl">
                 <img src="{{ Storage::url('public/image-products/') . $product->image }}" alt=""
-                    class="h-56 max-h-56 object-cover rounded-t-xl">
+                    class="h-56 w-full object-cover rounded-t-xl">
                 <div class="mx-3 mb-3">
                     <h1 class="text-xl font-semibold truncate">{{ $product->name }}</h1>
                     <div class="flex items-center justify-between">

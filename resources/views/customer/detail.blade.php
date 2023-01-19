@@ -3,8 +3,8 @@
 
 @section('content')
     <div class="flex flex-row flex-wrap py-4">
-        <main role="main" class="w-full lg:pr-5 pt-1 sm:w-2/3 md:w-2/3">
-            @foreach ($product as $product)
+        @foreach ($product as $product)
+            <main role="main" class="w-full lg:pr-5 pt-1 sm:w-2/3 md:w-2/3">
                 <section id="gallery">
                     <img src="{{ url(Storage::url('public/image-products/') . $product->image) }}" alt=""
                         class="w-full mt-6 rounded-2xl border">
@@ -17,8 +17,8 @@
                         </p>
                     </div>
                 </section>
-            @endforeach
-        </main>
-        <livewire:counter :product="$product">
+            </main>
+            <livewire:counter :product="$product">
+        @endforeach
     </div>
 @endsection

@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\Supervisor;
+use App\Http\Livewire\Counter;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,16 +25,18 @@ Route::controller(CustomerController::class)->group(function(){
     Route::get('/katalog', 'search')->name('search');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('', [Supervisor::class, 'homepage'])->name('index');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::get('/keranjang', [KeranjangController::class, 'keranjang'])->name('keranjang');
 
     Route::prefix('admin/katalog-muhammadiyah')->middleware('supervisor')->name('katalog.')->group(function(){
         Route::controller(Supervisor::class)->group(function(){

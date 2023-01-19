@@ -34,7 +34,7 @@ class AuthenticatedSessionController extends Controller
         }elseif (Auth::user()->role == 'SELLER') {
             return redirect(route('seller.index'));
         }elseif (Auth::user()->role == 'USER') {
-            return redirect(route('landing'));
+            return redirect('/katalog');
         } {
             return redirect('/');
         }

@@ -39,6 +39,6 @@ class Product extends Model
      */
     public function checkout()
     {
-        return $this->belongsTo(Checkout::class);
+        return $this->hasMany(Checkout::class);
     }
 }

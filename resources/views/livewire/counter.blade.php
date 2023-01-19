@@ -1,6 +1,7 @@
 <div class="w-full sm:w-1/3 md:w-1/3">
     <div class="top-0 w-full pt-4 md:mt-3">
         <div class="p-6 border rounded-2xl">
+
             <div class="mb-4">
                 <div class="mb-2">
                     <h3 class="font-semibold text-xl text-center">{{ $name }}</h3>
@@ -16,7 +17,7 @@
                                         </svg>
                                     </div>
                                 </button>
-                                <h3 class="font-bold">{{ $quantity }}</h3>
+                                <h3 class="font-bold" wire:model="quantity">{{ $quantity }}</h3>
                                 <button wire:click="increment">
                                     <div class="px-3 increment-btn cursor-pointer">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -35,15 +36,21 @@
                     </div>
                 </div>
             </div>
-            <a href="">
-                <button
-                    class="bg-emerald-400 ring-1 text-white hover:bg-emerald-500 ring-emerald-400 w-full py-2 rounded-full font-semibold">+
-                    Keranjang</button>
-            </a>
-            <a>
-                <button
-                    class="ring-1 mt-2 text-emerald-400 ring-emerald-400 w-full py-2 rounded-full font-semibold">Beli</button>
-            </a>
+            @if (Auth::check())
+            <form wire:submit.prevent="keranjang" method="post">
+                <a>
+                    <button
+                        class="bg-emerald-400 text-white hover:bg-emerald-500 ring-emerald-400 w-full py-2 rounded-full font-semibold">+
+                        Keranjang</button>
+                </a>
+            </form>
+            @else
+                <a href="{{ route('login') }}">
+                    <button
+                        class="bg-emerald-400 w-full py-2 rounded-full font-semibold">+
+                        Keranjang</button>
+                </a>
+            @endif
         </div>
     </div>
 </div>

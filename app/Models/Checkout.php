@@ -14,7 +14,8 @@ class Checkout extends Model
     protected $fillable = [
         'user_id',
         'product_id',
-        'quantity'
+        'quantity',
+        'subtotal'
     ];
 
     /**
@@ -24,7 +25,7 @@ class Checkout extends Model
      */
     public function product()
     {
-        return $this->hasMany(Product::class);
+        return $this->belongsTo(Product::class);
     }
 
     /**

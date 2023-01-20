@@ -37,6 +37,8 @@ Route::middleware('auth')->group(function () {
     // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/keranjang', [KeranjangController::class, 'keranjang'])->name('keranjang');
+    Route::delete('/delete-keranjang/{id}', [KeranjangController::class, 'destroy'])->name('destroy.keranjang');
+    Route::get('/checkout', [CustomerController::class, 'checkout'])->name('checkout');
 
     Route::prefix('admin/katalog-muhammadiyah')->middleware('supervisor')->name('katalog.')->group(function(){
         Route::controller(Supervisor::class)->group(function(){

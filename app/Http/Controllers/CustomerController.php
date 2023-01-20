@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Checkout;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Storage;
 
 class CustomerController extends Controller
 {
@@ -32,5 +36,25 @@ class CustomerController extends Controller
         return view('customer.detail', [
             'product' => $product
         ]);
+    }
+
+    public function checkout()
+    {
+        $data = Checkout::where('user_id', Auth::id())->where('status', 0)->get();
+
+        $jumlah_barang = $data->count();
+        $quantity = Checkout::where('user_id', Auth::id())->sum('quantity');
+        $subtotal = Checkout::where('user_id', Auth::id())->sum('subtotal');
+
+        $pdf = Pdf::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadview('customer.invoice', [
+            'data'  => $data,
+            'jumlah_barang' => $jumlah_barang,
+            'quantity'  => $quantity,
+            'subtotal'  => $subtotal
+        ]);
+
+        return $pdf->download('invoice.pdf');
+
+        return redirect('/katalog');
     }
 }

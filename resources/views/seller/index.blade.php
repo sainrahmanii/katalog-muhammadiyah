@@ -4,9 +4,9 @@
 @section('content')
 
     <div class="rounded-lg shadow-xl">
-        <div class="my-7 mx-5 overflow-x-scroll">
+        <div class="mx-5 overflow-x-scroll my-7">
             <table class="w-full whitespace-nowrap">
-                <thead class="bg-slate-300 border">
+                <thead class="border bg-slate-300">
                     <th class="py-2">No.</th>
                     <th>Nama Produk</th>
                     <th>Ketersediaan</th>
@@ -19,17 +19,17 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $product->name }}</td>
                         @if ($product->available == 1)
-                            <td><span class="bg-emerald-500 px-5 py-1 rounded-full font-bold text-white">TERSEDIA</span></td>
+                            <td><span class="px-5 py-1 font-bold text-white rounded-full bg-emerald-500">TERSEDIA</span></td>
                         @elseif ($product->available == 0)
-                            <td><span class="bg-red-500 px-5 py-1 rounded-full font-bold text-white">TIDAK TERSEDIA</span>
+                            <td><span class="px-5 py-1 font-bold text-white bg-red-500 rounded-full">HABIS</span>
                             </td>
                         @endif
                         <td>Rp {{ number_format((int) $product->harga) }}</td>
                         <td><img src="{{ Storage::url('public/image-products/') . $product->image }}"
-                                class="w-24 h-16 border object-cover max-w-32 mx-auto rounded-2xl" alt=""></td>
-                        <td class="flex gap-1 justify-center items-center">
+                                class="object-cover w-24 h-16 mx-auto border max-w-32 rounded-2xl" alt=""></td>
+                        <td class="flex items-center justify-center gap-1">
                             <a href="{{ route('seller.edit', $product->id) }}">
-                                <button class="bg-violet-500 px-2 py-2 rounded-lg">
+                                <button class="px-2 py-2 rounded-lg bg-violet-500">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="2" stroke="currentColor" class="w-5 h-5 stroke-white">
                                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -41,7 +41,7 @@
                                 action="{{ route('seller.destroy', $product->id) }}" method="POST">
                                 @csrf
                                 @method('delete')
-                                <button class="bg-red-400 px-2 py-2 rounded-lg">
+                                <button class="px-2 py-2 bg-red-400 rounded-lg">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="2" stroke="currentColor" class="w-5 h-5 stroke-white">
                                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -55,7 +55,7 @@
             </table>
             <div class="flex justify-end py-5">
                 <a href="{{ route('seller.create') }}"><button
-                        class="bg-emerald-400 px-7 py-2 rounded-full text-white font-semibold">CREATE</button></a>
+                        class="py-2 font-semibold text-white rounded-full bg-emerald-400 px-7">CREATE</button></a>
             </div>
             {{ $products->links() }}
         </div>

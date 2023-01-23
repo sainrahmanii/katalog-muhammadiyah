@@ -41,6 +41,7 @@ class CustomerController extends Controller
     public function checkout()
     {
         $data = Checkout::where('user_id', Auth::id())->where('status', 0)->get();
+        // $shop_id = $data->produc->groupBy('shop_id');
 
         $jumlah_barang = $data->count();
         $quantity = Checkout::where('user_id', Auth::id())->sum('quantity');
